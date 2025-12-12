@@ -1,129 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanjay Damor – Portfolio</title>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<!-- Icons (FontAwesome) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sanjay Damor — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#00eaff; --muted:#9aa4b2; --glass: rgba(255,255,255,0.04);
     }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Poppins',system-ui,Arial;background:linear-gradient(180deg,#071025 0%, #0f1724 100%);color:#e6eef6}
+    .wrap{max-width:1100px;margin:28px auto;padding:24px}
 
-    .container {
-        background: #ffffff;
-        width: 90%;
-        max-width: 500px;
-        padding: 30px;
-        text-align: center;
-        border-radius: 15px;
-        box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-    }
+    /* Header */
+    header{display:flex;gap:20px;align-items:center}
+    .avatar{width:160px;height:160px;border-radius:20px;overflow:hidden;border:3px solid rgba(255,255,255,0.06);flex:0 0 160px}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .hero{flex:1}
+    .name{font-size:28px;font-weight:700;margin:0}
+    .tag{color:var(--muted);margin:6px 0}
+    .cta{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 14px;border-radius:10px;color:#fff;text-decoration:none;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#6ef7ff22);border:1px solid rgba(0,234,255,0.18)}
 
-    .profile-img {
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 5px solid #0084ff;
-        margin-bottom: 20px;
-    }
+    /* layout */
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:28px;margin-top:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
 
-    h1 {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
+    h3{margin:0 0 12px 0}
+    p.small{color:var(--muted);margin:0}
 
-    p.bio {
-        font-size: 14px;
-        color: #444;
-        line-height: 1.6;
-        margin-bottom: 20px;
-        padding: 0 10px;
-    }
+    /* skills */
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag-chip{background:var(--glass);padding:6px 10px;border-radius:999px;color:#cfeff6;font-size:13px}
 
-    .social-icons a {
-        font-size: 28px;
-        margin: 0 12px;
-        color: #333;
-        text-decoration: none;
-        transition: 0.3s;
-    }
+    /* portfolio gallery */
+    .portfolio{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .port-item{position:relative;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+    .port-item img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .45s ease}
+    .port-item:hover img{transform:scale(1.06)}
+    .port-caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);padding:8px 10px;border-radius:8px;font-size:13px}
 
-    .social-icons a:hover {
-        color: #0084ff;
-        transform: scale(1.2);
-    }
+    /* resume & contact */
+    .meta-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    .meta-list li{display:flex;align-items:center;gap:10px}
 
-    footer {
-        margin-top: 15px;
-        font-size: 13px;
-        color: #777;
+    /* certificates */
+    .cert-grid{display:flex;flex-direction:column;gap:10px}
+    .cert{display:flex;gap:8px;align-items:center}
+    .cert img{width:80px;height:60px;object-fit:cover;border-radius:6px}
+
+    /* footer */
+    footer{margin-top:26px;position:relative}
+    .social-bottom{display:flex;justify-content:center;gap:12px;margin-bottom:18px}
+    .social-bottom a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.02);transition:all .2s}
+    .social-bottom a img{width:20px;height:20px;filter:brightness(1);
     }
-</style>
+    .social-bottom a:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,234,255,0.06)}
+
+    .footer-bar{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
+
+    /* responsive */
+    @media (max-width:980px){.grid{grid-template-columns:1fr}.avatar{width:120px;height:120px}.hero{padding-top:8px}}
+    @media (max-width:520px){.portfolio{grid-template-columns:1fr}
+    .avatar{border-radius:12px}}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    a.no-dec{color:var(--accent);text-decoration:none}
+
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <div class="wrap">
 
-    <!-- Your Photo -->
-    <img src="profile.jpg" class="profile-img" alt="Sanjay Damor">
+    <!-- Header -->
+    <header>
+      <div class="avatar"><img src="profile.jpeg" alt="Sanjay Damor"></div>
+      <div class="hero">
+        <h1 class="name">Sanjay Damor</h1>
+        <div class="tag">Graphic Designer | Social Media Content Designer | Canva Specialist</div>
+        <div class="tag muted">Udaipur, Rajasthan • damorsanjay2002@gmail.com • 9351944733</div>
+        <div class="cta">
+          <a class="btn primary" href="#portfolio">View Work</a>
+          <a class="btn" href="#resume">Download Resume</a>
+          <a class="btn" href="https://wa.me/9351944733">Message on WhatsApp</a>
+        </div>
+      </div>
+    </header>
 
-    <!-- Name -->
-    <h1>Sanjay Damor</h1>
+    <div class="grid">
+      <main>
+        <div class="card">
+          <h3>About Me</h3>
+          <p class="small">Creative Graphic Designer with hands-on experience creating social media posts, banners, reels, thumbnails, flyers, catalogs and brand visuals using Canva. I also do internet research, photo adjustment & basic digital marketing.</p>
+        </div>
 
-    <!-- Bio -->
-    <p class="bio">
-        Graphic Designer | Social Media Content Creator | Canva Expert  
-        <br> Udaipur, Rajasthan  
-        <br> Designing Posts, Stories, Reels, Banners, Flyers, Brochures & More
-    </p>
+        <div class="card" id="portfolio" style="margin-top:16px">
+          <h3>Portfolio — Best Work</h3>
+          <div class="portfolio">
+            <!-- Replace these images with your exported JPGs/PNGs -->
+            <div class="port-item"><img src="products/sample1.jpg" alt="Work 1"><div class="port-caption">Product Promo</div></div>
+            <div class="port-item"><img src="products/sample2.jpg" alt="Work 2"><div class="port-caption">Instagram Carousel</div></div>
+            <div class="port-item"><img src="products/sample3.jpg" alt="Work 3"><div class="port-caption">Event Flyer</div></div>
+            <div class="port-item"><img src="products/sample4.jpg" alt="Work 4"><div class="port-caption">Thumbnail</div></div>
+          </div>
+        </div>
 
-    <!-- Social Icons -->
-    <div class="social-icons">
+        <div class="card" style="margin-top:16px">
+          <h3>Certifications</h3>
+          <div class="cert-grid">
+            <div class="cert"><img src="certs/cert1.jpg" alt="cert"><div>
+              <div style="font-weight:600">Canva — Social Media Design</div>
+              <div class="muted" style="font-size:13px">Issued: 2024</div>
+            </div></div>
+            <div class="cert"><img src="certs/cert2.jpg" alt="cert"><div>
+              <div style="font-weight:600">Google Digital Garage — Fundamentals</div>
+              <div class="muted" style="font-size:13px">Issued: 2025</div>
+            </div></div>
+          </div>
+        </div>
 
-        <a href="https://www.instagram.com/s4___sanju/" target="_blank">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
+        <div class="card" style="margin-top:16px">
+          <h3>Contact</h3>
+          <p class="small">Want to work together? Message me on WhatsApp or email me at <a class="no-dec" href="mailto:damorsanjay2002@gmail.com">damorsanjay2002@gmail.com</a></p>
+        </div>
 
-        <a href="https://www.snapchat.com/@s4sanju8991" target="_blank">
-            <i class="fa-brands fa-snapchat"></i>
-        </a>
+      </main>
 
-        <a href="https://www.facebook.com/sanjaydamor.8991" target="_blank">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
+      <aside>
+        <div class="card" id="resume">
+          <h3>Resume & Details</h3>
+          <ul class="meta-list">
+            <li><strong>Experience:</strong> Graphic Designer (Iron Street) • Computer Operator (Udaipur Dental Clinic)</li>
+            <li><strong>Education:</strong> B.Tech (CSE) • Diploma IT • RSCIT</li>
+            <li><strong>Skills:</strong> Canva, Social Media Design, Photo Edit, MS Office, Research</li>
+            <li><strong>Resume:</strong> <a class="no-dec" href="#">Download PDF</a></li>
+          </ul>
+        </div>
 
-        <a href="https://www.linkedin.com/in/sanjaydamor/" target="_blank">
-            <i class="fa-brands fa-linkedin"></i>
-        </a>
+        <div class="card" style="margin-top:16px">
+          <h3>Quick Links</h3>
+          <ul class="meta-list">
+            <li><a class="no-dec" href="https://www.instagram.com/s4___sanju/" target="_blank">Instagram</a></li>
+            <li><a class="no-dec" href="https://www.linkedin.com/in/sanjaydamor/" target="_blank">LinkedIn</a></li>
+            <li><a class="no-dec" href="https://www.facebook.com/sanjaydamor.8991" target="_blank">Facebook</a></li>
+            <li><a class="no-dec" href="https://www.youtube.com/@S4sanjubaba" target="_blank">YouTube</a></li>
+          </ul>
+        </div>
 
-        <a href="https://wa.me/9351944733" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
-
-        <a href="https://www.youtube.com/@S4sanjubaba" target="_blank">
-            <i class="fa-brands fa-youtube"></i>
-        </a>
-
+      </aside>
     </div>
 
-    <footer>© 2025 | Designed by Sanjay Damor</footer>
-</div>
+    <!-- Social icons bottom -->
+    <div class="social-bottom">
+      <a href="https://www.instagram.com/s4___sanju/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="ig"></a>
+      <a href="https://www.snapchat.com/@s4sanju8991" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670226.png" alt="sc"></a>
+      <a href="https://www.facebook.com/sanjaydamor.8991" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="fb"></a>
+      <a href="https://www.linkedin.com/in/sanjaydamor/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="li"></a>
+      <a href="https://wa.me/9351944733" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="wa"></a>
+      <a href="https://www.youtube.com/@S4sanjubaba" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="yt"></a>
+    </div>
+
+    <div class="footer-bar">
+      <div>© 2025 Sanjay Damor</div>
+      <div style="font-size:13px;color:var(--muted)">Made by <strong>Sanjay Damor</strong></div>
+    </div>
+
+  </div>
 
 </body>
 </html>
